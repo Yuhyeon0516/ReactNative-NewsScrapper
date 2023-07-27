@@ -8,3 +8,8 @@ You can add or remove for favorite news in News Detail screen.<br/>
 Also if you add favorite news, move Favorite screen you can see favorite news.
 
 # Result
+
+![Result](https://github.com/Yuhyeon0516/ReactNative-NewsScrapper/assets/120432007/8bcb46bc-1637-44cd-8297-3e96944d0a53)
+
+
+
