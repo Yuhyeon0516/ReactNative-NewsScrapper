@@ -1,9 +1,10 @@
-import { CLIP_NEWS_ITEM, GET_NEWS_LIST_FAILURE, GET_NEWS_LIST_REQUEST, GET_NEWS_LIST_SUCCESS } from "../action/news";
+import { CLIPPED_TAB_FOCUS, CLIP_ITEM_RESET, CLIP_NEWS_ITEM, GET_NEWS_LIST_FAILURE, GET_NEWS_LIST_REQUEST, GET_NEWS_LIST_SUCCESS } from "../action/news";
 
 const defaultNewsReducer = {
   favoriteNews: [],
   newsList: [],
   loading: false,
+  isInitFocusTabOne: false,
 };
 
 export function newsReducer(state = defaultNewsReducer, action) {
@@ -39,6 +40,18 @@ export function newsReducer(state = defaultNewsReducer, action) {
       return {
         ...state,
         favoriteNews: [...state.favoriteNews, action.newsItem],
+      };
+
+    case CLIPPED_TAB_FOCUS:
+      return {
+        ...state,
+        isInitFocusTabOnce: true,
+      };
+
+    case CLIP_ITEM_RESET:
+      return {
+        ...state,
+        favoriteNews: action.savedItems,
       };
   }
   return {

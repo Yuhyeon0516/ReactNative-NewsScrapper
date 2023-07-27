@@ -1,18 +1,29 @@
 import { FlatList, View } from "react-native";
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect } from "react";
 import { Header } from "../components/Header/Header";
-import { useNavigation } from "@react-navigation/native";
-import { useSelector } from "react-redux";
+import { useIsFocused, useNavigation } from "@react-navigation/native";
+import { useDispatch, useSelector } from "react-redux";
 import { CustomButton } from "../components/CustomButton";
 import { Typography } from "../components/Typography";
+import { clippedTabFocus } from "../action/news";
 
 export default function FavoriteNewsScreen() {
   const navigation = useNavigation();
   const data = useSelector((state) => state.news.favoriteNews);
 
+  const dispatch = useDispatch();
+
   const onPressItem = useCallback((newsItem) => {
     navigation.navigate("Detail", { newsItem });
   }, []);
+
+  const isFocused = useIsFocused();
+
+  useEffect(() => {
+    if (isFocused) {
+      dispatch(clippedTabFocus());
+    }
+  }, [isFocused]);
 
   return (
     <View style={{ flex: 1 }}>
